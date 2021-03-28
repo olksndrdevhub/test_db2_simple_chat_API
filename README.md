@@ -10,7 +10,7 @@ go to `https://simple-chat-api-test-db2.herokuapp.com/swagger-ui/` to see online
 ## To run local server:
 1. Clone this repo,  
 2. Activate your virtual environment,
-3. Navigate in project folder.
+3. Navigate in project folder,
 4. In `core/settings.py` file set DEBUG to True(!),  
 5. Create your database in Postgresql,
 6. Set your Postgres DB credentials in DATABASE sections in `core/settings.py` file,  
