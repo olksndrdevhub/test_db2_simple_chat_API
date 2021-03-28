@@ -5,11 +5,24 @@
 go to `https://simple-chat-api-test-db2.herokuapp.com/swagger-ui/` to see online documentation or test API via Swagger UI
 
 <hr>
-
 ### Also for full testing this API you can use Postman or httpie.
 
+## To run local server:
+1. Clone this repo,  
+2. Activate your virtual environment,
+3. Navigate in project folder.
+4. In `settings.py` file set DEBUG to True(!),  
+5. Create your database in Postgresql,
+6. Set your Postgres DB credentials in DATABASE sections in `settings.py` file,  
+7. Run `pip install -r local.txt`,
+8. Run `python manage.py migrate`,
+9. Run `python manage.py runserver`,
+10. Open in your browser `localhost:8000` or `localhost:8000/swagger-ui`.
 
-## Endpoints:  
+
+
+
+## Endpoints for Heroku version:  
 
 `https://simple-chat-api-test-db2.herokuapp.com/` - Index view of project. Return link to Index API view.
 <hr>

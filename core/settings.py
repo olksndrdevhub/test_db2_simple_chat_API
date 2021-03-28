@@ -12,7 +12,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
-import django_heroku
+# Set to True when want run local server
+DEBUG=False
+
+# This setting only for deploying on Heroku
+if DEBUG == False:
+    import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -141,4 +146,5 @@ REST_FRAMEWORK = {
 
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+if DEBUG == False:
+    django_heroku.settings(locals())
