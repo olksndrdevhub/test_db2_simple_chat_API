@@ -1,89 +1,76 @@
 # Easynetwork, social network API
 
 
-## How to run:  
-1. Clone this repository:  
-`git clone https://github.com/olksndrdevhub/apollo_test_event_api.git`  
-
-
-2. Activate your virtualvenv ("`conda activate <venv_name>`" or some other what you use)  
-
-3. Navigate to project folder:  
-`cd apollo_test_event_api/`
-
-4. Install requirements:  
-`pip install -r requirements.txt`
-
-5. Make migrate:  
-`python manage.py migrate`  
-
-6. Create superuser:  
-`python manage.py createsuperuser`
-
-7. Run server:  
-`python manage.py runserver`
+## How to test:  
+go to `https://simple-chat-api-test-db2.herokuapp.com/swagger-ui/` to see online documentation or test API via Swagger UI
 
 <hr>
 
-### For full testing this API you can user Postman(recommended) or httpie. Browsable API got some restrict couse to get access to endpoints you need get Token, so it is not recommended to test with a browser.
+### Also for full testing this API you can use Postman or httpie.
 
-## Authentication:  
-
-For Authentication you need to get Token. You need send POST request to `http://localhost:8000/api/v1/token/` endpoint with your username and password in request body:  
-<pre>
-{
-    "username":"your_username",
-    "password":"Your_password"
-}
-</pre>  
-This will return your Token.  
-
-<b>If you need to authentication in Postman go to Authorization tab(1), select Type as OAuth 2.0(2), paste your Token in field(3) and write '*Token*' at Header Prefix field(4).</b>  
-
-![postman manual](readme_res/token_pic.png)
 
 ## Endpoints:  
 
-`http://localhost:8000/` - Index view of project. Return link to Index API view.
+`https://simple-chat-api-test-db2.herokuapp.com/` - Index view of project. Return link to Index API view.
 <hr>
 
-`http://localhost:8000/api/v1/` - Index endpoint of API. Return links to Events view and EventTypes view. 
-<hr>
+`https://simple-chat-api-test-db2.herokuapp.com/api/v1/messages/list/` - List of Messages endpoint. Allow to get list of messages (GET method), like this:     
 
-`http://localhost:8000/api/v1/events/` - Events endpoint. Allow to get list of events (GET method, require authentication) or create new event (POST method, require authentication).   
-
-To create new Event just send POST request to this endpoint with `event_type`(ID), `info`(JSON), and `timestamp` in request body. (You must already have some EventTypes in your DB. To create it check bellow.)  
-For example:
 <pre>
 {
-    "event_type":2,
-    "info":[
-        {
-            "price":1001010
-        }
-    ],
-    "timestamp": "2021-02-16T15:26:59Z"
+  "count": 12,
+  "next": null,
+  "previous": "https://simple-chat-api-test-db2.herokuapp.com/api/v1/messages/list/",
+  "results": [
+    {
+      "id": 11,
+      "text": "string11",
+      "author_email": "user@example.com",
+      "created": "2021-03-28T15:50:47.859086Z",
+      "updated": "2021-03-28T15:50:47.859146Z"
+    },
+    {
+      "id": 12,
+      "text": "string 12",
+      "author_email": "user@example.com",
+      "created": "2021-03-28T16:09:08.733248Z",
+      "updated": "2021-03-28T16:09:08.733280Z"
+    }
+  ]
+}
+</pre>
+This endpoint return paginated list of results, 10 messages per page. so it get non-required parammeter "page" with page number, fo example `https://simple-chat-api-test-db2.herokuapp.com/api/v1/messages/list/?page=2`.
+<hr>
+
+`https://simple-chat-api-test-db2.herokuapp.com/api/v1/messages/single/<id>/` - Endpoint for Message with `id=message id`. Here you can get, single message.  
+Return selected message, for example:  
+<pre>
+{
+  "id": 1,
+  "text": "test message",
+  "author_email": "test@mail.com",
+  "created": "2021-03-28T14:44:21.217134Z",
+  "updated": "2021-03-28T14:44:21.217170Z"
 }
 </pre>
 <hr>
 
-`http://localhost:8000/api/v1/events/<id>/` - Endpoint for Event with `id=event id`. Here you can get, update, delete event. Require authentication.  
-Return selected event.
-<hr>
+`https://simple-chat-api-test-db2.herokuapp.com/api/v1/messages/create/` - Create Message endpoint. Allow to create (POST method) new message.   
 
-`http://localhost:8000/api/v1/event-types/` - EventTypes endpoint. Allow to get list of event types (GET method, require authentication) or create new event type (POST method, require authentication).   
-
-To create new EventType just send POST request to this endpoint with `name` in request body.  
+To create new EventType just send POST request to this endpoint with `text` and `author_email` in request body.  
 For example:  
 <pre>
 {
-    "name": "First Event"
+  "text": "example text #2"
+  "author_email": "user@example.com"
 }
 </pre>
-<hr>
+This endpoint have some validations:  
 
-`http://localhost:8000/api/v1/event-types/<id>/` - Endpoint for EventType with `id=event type id`. Here you can get, update, delete event type. Require authentication.  
-Return selected event type.
+`text` - must be not emply,  
+`author_email` - must be valid email address.  
+
+This validations is set on database model scheme level, in `chat_api/models.py`
 <hr>
 
 
