@@ -84,6 +84,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# Put your own credentials here for name, user and password!!!
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
