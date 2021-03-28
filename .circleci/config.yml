@@ -1,21 +1,15 @@
 version: 2.1
 
-orbs:
-  python: circleci/python@0.2.1
+ orbs:
+   heroku: circleci/heroku@x.y # Use the Heroku orb in your config
 
-jobs:
-  build-and-test:
-    executor: python/default
-    steps:
-      - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
-      - run:
-          command: ./manage.py test
-          name: Test
-
-workflows:
-  main:
-    jobs:
-      - build-and-test
+ workflows:
+   heroku_deploy:
+     jobs:
+       - build
+       - heroku/deploy-via-git:
+           requires:
+             - build # only run deploy-via-git job if the build job has completed
+           filters:
+             branches:
+               only: master # only run deploy-via-git job on master branch
