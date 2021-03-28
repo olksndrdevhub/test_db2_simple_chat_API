@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 
 # Set to True when want run local server
-DEBUG=False
+DEBUG = False
 
 # This setting only for deploying on Heroku
 if DEBUG == False:
@@ -30,8 +30,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '2@#2g1y_pqk$djg&gaczy#mcile1ac6%f0gp=2n^7m#b=ri_u%'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', 'simple-chat-api-test-db2.herokuapp.com']
 
