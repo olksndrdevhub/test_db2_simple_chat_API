@@ -72,10 +72,3 @@ This endpoint have some validations:
 
 This validations is set on database model scheme level, in `chat_api/models.py`
 <hr>
-
-
-## Testing:
-
-Project have 4 tests for POST request to `/api/v1/events/`  
-
-To start tests run in command line: `python manage.py test`
