@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-from django.core.exception import ImproperlyConfigured
+from django.core.exceptions import ImproperlyConfigured
 
 # Set to True when want run local server
 DEBUG = False
