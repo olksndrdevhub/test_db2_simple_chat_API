@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 
 # Set to True when want run local server
-DEBUG=True
+DEBUG=False
 
 # This setting only for deploying on Heroku
 if DEBUG == False:
