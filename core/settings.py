@@ -98,7 +98,8 @@ if DEBUG:
     }
 elif DEBUG == False:
     DATABASES = {}
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+    db_config = dj_database_url.config(conn_max_age=600)
+    DATABASES['default'] = db_config
 
 
 
