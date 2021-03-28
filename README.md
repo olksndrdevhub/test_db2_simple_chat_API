@@ -1,11 +1,11 @@
-# Easynetwork, social network API
+# Simple Chat, Public chat API
 
 
 ## How to test:  
 go to `https://simple-chat-api-test-db2.herokuapp.com/swagger-ui/` to see online documentation or test API via Swagger UI
 
-<hr>
 ### Also for full testing this API you can use Postman or httpie.
+<hr>
 
 ## To run local server:
 1. Clone this repo,  
@@ -18,9 +18,7 @@ go to `https://simple-chat-api-test-db2.herokuapp.com/swagger-ui/` to see online
 8. Run `python manage.py migrate`,
 9. Run `python manage.py runserver`,
 10. Open in your browser `localhost:8000` or `localhost:8000/swagger-ui`.
-
-
-
+<hr>
 
 ## Endpoints for Heroku version:  
 
