@@ -13,11 +13,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 
 # Set to True when want run local server
-DEBUG=False
+DEBUG=True
 
 # This setting only for deploying on Heroku
 if DEBUG == False:
     import django_heroku
+    import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,18 +84,22 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-# Put your own credentials here for name, user and password!!!
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'chat_db',
-        'USER': 'chat_admin',
-        'PASSWORD': 'chat_admin',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+if DEBUG:
+    # Put your own credentials here for name, user and password!!!
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': '',
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': '',
+            'PORT': '',
+        }
     }
-}
+elif DEBUG == False:
+    DATABASES = {}
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
 
 
 # Password validation
