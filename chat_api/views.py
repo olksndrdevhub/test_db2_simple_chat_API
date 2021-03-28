@@ -12,7 +12,7 @@ from .serializers import MessageSerializer
 
 def index(request):
     
-    return HttpResponse('<h1>Go to <a href="/api/v1/messages/list/">/api/v1/messages/list/</a> URI</h1>')
+    return HttpResponse('<h1>Index Page for Simple_Chat API</h1>')
 
 
 class MessagesPaginatedListView(ListAPIView):
