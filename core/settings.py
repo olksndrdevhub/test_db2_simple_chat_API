@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-from django.core.exceptions import ImproperlyConfigured
 
 # Set to True when want run local server
 DEBUG = False
@@ -96,16 +95,13 @@ if DEBUG:
         }
     }
 elif DEBUG == False:
-    try:
-        DATABASES = {}
-        db_config = dj_database_url.config(conn_max_age=600)
-        DATABASES['default'] = db_config
-    except ImproperlyConfigured:
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': 'db'
-            }
+    DATABASES = {}
+    db_config = dj_database_url.config(conn_max_age=600)
+    DATABASES['default'] = db_config
+
+    DATABASES['sqlite'] = {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db'
         }
 
 
