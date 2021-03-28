@@ -78,7 +78,7 @@ For example:
 </pre>
 This endpoint have some validations:  
 
-`text` - must be not emply,  
+`text` - must be not emply & not longer than 100 symbols,  
 `author_email` - must be valid email address.  
 
 This validations is set on database model scheme level, in `chat_api/models.py`
