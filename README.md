@@ -1,4 +1,4 @@
-# Simple Chat, Public chat API
+# Simple Chat, Public chat API*
 
 
 ## How to test:  
@@ -6,6 +6,8 @@ go to `https://simple-chat-api-test-db2.herokuapp.com/swagger-ui/` to see online
 
 ### Also for full testing this API you can use Postman or httpie.
 <hr>
+
+### *Configured automatic deploy to Heroku via CIrcleCI
 
 ## To run local server:
 1. Clone this repo,  
