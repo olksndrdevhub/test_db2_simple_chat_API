@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from django.core.exception import ImproperlyConfigured
 
 # Set to True when want run local server
 DEBUG = False
@@ -95,10 +96,17 @@ if DEBUG:
         }
     }
 elif DEBUG == False:
-    DATABASES = {}
-    db_config = dj_database_url.config(conn_max_age=600)
-    DATABASES['default'] = db_config
-
+    try:
+        DATABASES = {}
+        db_config = dj_database_url.config(conn_max_age=600)
+        DATABASES['default'] = db_config
+    except ImproperlyConfigured:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': 'db'
+            }
+        }
 
 
 # Password validation
